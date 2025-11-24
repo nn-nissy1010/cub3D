@@ -3,7 +3,6 @@ name: Norminette & Valgrind CI (Docker)
 on:
   push:
     branches: [ "*" ]
-  pull_request:
 
 jobs:
   ci:
