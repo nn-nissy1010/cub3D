@@ -30,4 +30,4 @@ jobs:
       - name: Run Valgrind
         run: |
           docker run --rm -v ${{ github.workspace }}:/app ci-image \
-            bash -c 'valgrind --leak-check=full --error-exitcode=1 ./cub3D
+            bash -c 'valgrind --leak-check=full --error-exitcode=1 ./cub3D'
