@@ -1,0 +1,33 @@
+name: Norminette & Valgrind CI (Docker)
+
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build CI Docker image
+        run: docker build -t ci-image -f Dockerfile.ci .
+
+      - name: Run Norminette
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/app ci-image \
+            bash -c "norminette | tee norm_log.txt && \
+            if grep -q 'Error:' norm_log.txt; then exit 1; fi"
+
+      - name: Build project (in docker)
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/app ci-image \
+            bash -c "make"
+
+      - name: Run Valgrind
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/app ci-image \
+            bash -c 'valgrind --leak-check=full --error-exitcode=1 ./your_program'
