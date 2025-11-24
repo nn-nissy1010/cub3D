@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build CI Docker image
-        run: docker build -t ci-image -f Dockerfile.ci .
+        run: docker build -t ci-image -f Docker/Dockerfile.ci .
 
       - name: Run Norminette
         run: |
@@ -22,7 +22,7 @@ jobs:
             bash -c "norminette | tee norm_log.txt && \
             if grep -q 'Error:' norm_log.txt; then exit 1; fi"
 
-      - name: Build project (in docker)
+      - name: Build project
         run: |
           docker run --rm -v ${{ github.workspace }}:/app ci-image \
             bash -c "make"
@@ -30,4 +30,4 @@ jobs:
       - name: Run Valgrind
         run: |
           docker run --rm -v ${{ github.workspace }}:/app ci-image \
-            bash -c 'valgrind --leak-check=full --error-exitcode=1 ./your_program'
+            bash -c 'valgrind --leak-check=full --error-exitcode=1 ./cub3D
