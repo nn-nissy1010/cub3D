@@ -3,11 +3,5 @@
 int main(void)
 {
     printf("%s\n", "hello world");
-
-    printf("%s\n", "hello world");
-
-    printf("%s\n", "hello world");
-
-        printf("%s\n", "hello world");
     return 0;
 }
