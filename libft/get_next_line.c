@@ -3,112 +3,89 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 21:56:42 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/07/30 12:11:32 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/11/25 21:27:50 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft.h"
 
-char	*after_newline(char *line)
+static char *before_newline(const char *s)
 {
-	char	*newline;
+    size_t i = 0;
 
-	if (!line)
-		return (NULL);
-	newline = ft_strchr(line, '\n');
-	if (!newline || !*(newline + 1))
-		return (NULL);
-	return (ft_strdup(newline + 1));
+    if (!s || *s == '\0')
+        return (NULL);
+    while (s[i] && s[i] != '\n')
+        i++;
+    if (s[i] == '\n')
+        i++;
+    return (gnl_ft_substr(s, 0, i));
 }
 
-char	*before_newline(char *line)
+static char *after_newline(const char *s)
 {
-	size_t	i;
+    char *p;
 
-	i = 0;
-	if (!line || *line == '\0')
-		return (NULL);
-	while (line[i] && line[i] != '\n')
-		i++;
-	if (line[i] == '\n')
-		i++;
-	return (ft_substr(line, 0, i));
+    if (!s)
+        return (NULL);
+    p = gnl_ft_strchr(s, '\n');
+    if (!p || !*(p + 1))
+        return (NULL);
+    return (gnl_ft_strdup(p + 1));
 }
 
-static char	*read_and_append(int fd, char *save, char *buf)
+static char *read_and_append(int fd, char *save)
 {
-	ssize_t	byte_read;
-	char	*tmp;
+    char    *buf;
+    char    *tmp;
+    ssize_t n;
 
-	while (!save || !ft_strchr(save, '\n'))
-	{
-		byte_read = read(fd, buf, BUFFER_SIZE);
-		if (byte_read < 0)
-		{
-			free(save);
-			return (NULL);
-		}
-		if (byte_read == 0)
-			break ;
-		buf[byte_read] = '\0';
-		tmp = ft_strjoin(save, buf);
-		if (!tmp)
-		{
-			free(save);
-			return (NULL);
-		}
-		free(save);
-		save = tmp;
-	}
-	return (save);
+    buf = malloc(BUFFER_SIZE + 1);
+    if (!buf)
+        return (NULL);
+
+    while (!gnl_ft_strchr(save, '\n'))
+    {
+        n = read(fd, buf, BUFFER_SIZE);
+        if (n <= 0)
+            break;
+        buf[n] = '\0';
+        if (!save)
+            save = gnl_ft_strdup("");
+        tmp = gnl_ft_strjoin(save, buf);
+        free(save);
+        save = tmp;
+    }
+    free(buf);
+    return (save);
 }
 
-char	*buf_add_line(int fd, char *save)
+char *get_next_line(int fd)
 {
-	char	*buf;
-	char	*result;
+    static char *save;
+    char        *full;
+    char        *line;
+    char        *next;
 
-	buf = malloc(BUFFER_SIZE + 1);
-	if (!buf)
-		return (free(save), NULL);
-	result = read_and_append(fd, save, buf);
-	free(buf);
-	if (!result || *result == '\0')
-	{
-		free(result);
-		return (NULL);
-	}
-	return (result);
-}
+    if (fd < 0 || BUFFER_SIZE <= 0)
+        return (NULL);
 
-char	*get_next_line(int fd)
-{
-	static char	*save;
-	char		*line;
-	char		*next;
-	char		*pre_save;
+    full = read_and_append(fd, save);
+    if (!full || *full == '\0')
+    {
+        free(full);
+        save = NULL;
+        return (NULL);
+    }
 
-	if ((fd < 0 || BUFFER_SIZE <= 0) || (BUFFER_SIZE > MAX_BUFFER_SIZE))
-		return (NULL);
-	pre_save = buf_add_line(fd, save);
-	if (!pre_save)
-	{
-		save = NULL;
-		return (NULL);
-	}
-	line = before_newline(pre_save);
-	if (!line)
-	{
-		free(pre_save);
-		save = NULL;
-		return (NULL);
-	}
-	next = after_newline(pre_save);
-	free(pre_save);
-	save = next;
-	return (line);
+    line = before_newline(full);
+    next = after_newline(full);
+
+    free(full);
+    save = next;
+
+    return (line);
 }
