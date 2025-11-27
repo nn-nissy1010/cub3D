@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   new_objects.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 11:14:11 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/11/24 11:25:45 by nnishiya         ###   ########.fr       */
+/*   Created: 2025/11/25 19:43:10 by nnishiya          #+#    #+#             */
+/*   Updated: 2025/11/25 19:43:35 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "main.h"
 
-int	main(void)
+t_object *new_object(double x, double y, t_objtype type, char *sprite)
 {
-	printf("%s\n", "hello world test");
-	return (0);
+    t_object *o;
+
+    o = malloc(sizeof(t_object));
+    if (!o)
+        return (NULL);
+
+    o->x = x;
+    o->y = y;
+    o->type = type;
+    o->sprite_path = sprite;
+
+    return (o);
 }

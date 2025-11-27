@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.dbclient-js": "javascript",
+        "game_parser.h": "c",
+        "memory": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "unordered_map": "c"
+    }
+}
