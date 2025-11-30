@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spawn_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:38:02 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/25 19:55:59 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/11/27 21:29:06 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,30 @@ static void add_object(t_game *g, t_object *obj)
     g->objects[g->obj_count++] = obj;
 }
 
-static double direction_from_char(char c)
+static void	dir_from_char(char c, double *dx, double *dy)
 {
-    if (c == 'N') return (3.14159265 * 1.5);
-    if (c == 'S') return (3.14159265 * 0.5);
-    if (c == 'W') return (3.14159265);
-    if (c == 'E') return (0.0);
-    return (0.0);
+	if (c == 'N')
+	{
+		*dx = 0.0;
+		*dy = -1.0;
+	}
+	else if (c == 'S')
+	{
+		*dx = 0.0;
+		*dy = 1.0;
+	}
+	else if (c == 'E')
+	{
+		*dx = 1.0;
+		*dy = 0.0;
+	}
+	else
+	{
+		*dx = -1.0;
+		*dy = 0.0;
+	}
 }
+
 
 int spawn_objects_from_map(t_game *g)
 {
@@ -46,14 +62,12 @@ int spawn_objects_from_map(t_game *g)
             {
                 add_object(g, (t_object *)new_structure(px, py, 1));  // 壁
             }
-            else if (c == 'D')
-            {
-                add_object(g, (t_object *)new_door(px, py));
-            }
             else if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
             {
-                double dir = direction_from_char(c);
-                add_object(g, (t_object *)new_player(px, py, dir));
+                double dir_x;
+                double dir_y;
+                dir_from_char(c, &dir_x, &dir_y);
+                add_object(g, (t_object *)new_player(px, py, dir_x, dir_y));
             }
             else if (c == '0')
             {

@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   free_split.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 17:16:15 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/26 17:20:11 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/11/30 23:45:38 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-void free_split(char **sp)
+void	free_split(char **sp)
 {
-    int i;
+	int	i;
 
-    if (!sp)
-        return;
-    i = 0;
-    while (sp[i])
-    {
-        free(sp[i]);
-        i++;
-    }
-    free(sp);
+	if (!sp)
+		return ;
+	i = 0;
+	while (sp[i])
+	{
+		free(sp[i]);
+		i++;
+	}
+	free(sp);
 }
