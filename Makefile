@@ -5,6 +5,8 @@ NAME = cub3D
 # ----------------------------------------
 SRCS = \
     src/main.c \
+    src/init_game.c  \
+    src/utils/free_split.c \
     src/parse/parse.c \
     src/parse/parse_utils.c \
     src/parse/map_builder.c \
@@ -13,11 +15,18 @@ SRCS = \
     src/object/new_object.c \
     src/object/new_living.c \
     src/object/new_player.c \
-    src/object/new_door.c \
     src/object/new_structure.c \
     src/texmgr/texmgr_init.c \
     src/texmgr/texmgr_destroy.c \
     src/render/draw_world.c \
+    src/render/draw_wall.c \
+    src/camera/camera_main.c \
+    src/camera/ray_single.c \
+    src/camera/ray_result.c \
+    src/camera/handle_input.c \
+    src/camera/run_dda.c \
+    src/mlx_register/register_hooks.c \
+   
 
 OBJS = $(SRCS:.c=.o)
 
@@ -101,3 +110,18 @@ parser_cli: $(PARSER_OBJS) $(COMMON_OBJS) libft/libft.a
 
 parser_cli_clean:
 	rm -f $(COMMON_OBJS) $(PARSER_OBJS)
+
+
+# ----------------------------------------
+# Build with main_kuwa
+# ----------------------------------------
+
+KUWA_MAIN = src/main_kuwa.c
+KUWA_OBJS = $(KUWA_MAIN:.c=.o) $(filter-out src/main.o, $(OBJS))
+
+kuwa: $(LIBFT_LIB) $(MLX_LIB) $(KUWA_OBJS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(KUWA_OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o cub3D_kuwa
+
+kuwa_clean:
+	rm -f $(KUWA_OBJS)
+

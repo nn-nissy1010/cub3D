@@ -3,35 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   new_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:44:44 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/25 20:04:33 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/11/30 19:50:17 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-static void default_open_door(t_player *self)
+t_player	*new_player(double x, double y, double dir_x, double dir_y)
 {
-    (void)self;
-    // 実装はゲームロジック側で
-}
+	t_player	*p;
+	t_living	*living;
 
-t_player *new_player(double x, double y, double dir)
-{
-    t_player *p;
-
-    p = malloc(sizeof(t_player));
-    if (!p)
-        return (NULL);
-
-    p->base = *new_living(x, y);
-    p->base.base.type = OBJ_PLAYER;
-    p->base.base.sprite_path = TEX_PLAYER;
-
-    p->direction = dir;
-    p->open_door = &default_open_door;
-
-    return p;
+	living = new_living(x, y);
+	if (!living)
+		return (NULL);
+	p = malloc(sizeof(t_player));
+	if (!p)
+	{
+		free(living);
+		return (NULL);
+	}
+	p->base = *living;
+	free(living);
+	p->base.base.type = OBJ_PLAYER;
+	p->base.base.sprite_path = TEX_PLAYER;
+	p->base.dir.dir_x = dir_x;
+	p->base.dir.dir_y = dir_y;
+	p->base.dir.plane_x = -dir_y * 0.66;
+	p->base.dir.plane_y = dir_x * 0.66;
+	return (p);
 }
