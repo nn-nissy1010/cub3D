@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 16:58:17 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/26 17:30:08 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:17:46 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,10 @@ static void print_json_objects(const t_game *g)
         if (o->type == OBJ_PLAYER)
         {
             t_player *p = (t_player *)o;
-            printf("      \"direction\": %.2f\n", p->direction);
+            printf("      \"direction\": %.2f,\n", p->direction);
         }
-        else
-        {
-            printf("      \"sprite\": \"%s\"\n",
+        printf("      \"sprite\": \"%s\"\n",
                 o->sprite_path ? o->sprite_path : "");
-        }
 
         if (i + 1 < g->obj_count)
             printf("    },\n");

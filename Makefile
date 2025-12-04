@@ -101,3 +101,27 @@ parser_cli: $(PARSER_OBJS) $(COMMON_OBJS) libft/libft.a
 
 parser_cli_clean:
 	rm -f $(COMMON_OBJS) $(PARSER_OBJS)
+
+PARSER_JSON = \
+    src/parse_json/main.o \
+	src/parse/parse.o \
+    src/parse/parse_utils.o \
+    src/parse/map_builder.o \
+    src/parse/map_validator.o \
+    src/parse/spawn_objects.o \
+    src/object/new_object.o \
+    src/object/new_living.o \
+    src/object/new_player.o \
+    src/object/new_door.o \
+    src/object/new_structure.o \
+	src/render/draw_world.o \
+	src/texmgr/texmgr_init.o \
+	src/texmgr/texmgr_destroy.o \
+	src/utils/free_split.o \
+
+
+parser_json: $(LIBFT_LIB) $(MLX_LIB) $(PARSER_JSON)
+	$(CC) $(CFLAGS) -o parser_json $(PARSER_JSON) $(LIBFT_LIB) $(MLX_FLAGS)
+
+parser_json_clean:
+	rm -f $(PARSER_JSON)

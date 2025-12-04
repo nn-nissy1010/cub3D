@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:05:26 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/25 20:17:57 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/11/27 13:08:09 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ typedef struct s_texture
 typedef struct s_texmgr
 {
     t_texture  wall;
-    t_texture  floor;
-    t_texture  ceiling;
     t_texture  player;
     t_texture  door;
 }   t_texmgr;

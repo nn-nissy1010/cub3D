@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:24:38 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/25 19:53:10 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/11/27 13:09:48 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef enum e_objtype {
     OBJ_DOOR,
     OBJ_STRUCTURE,
     OBJ_WALL,
-    OBJ_FLOOR_CEILING
 }   t_objtype;
 
 typedef struct s_object
