@@ -25,8 +25,7 @@ SRCS = \
     src/camera/ray_result.c \
     src/camera/handle_input.c \
     src/camera/run_dda.c \
-    src/mlx_register/register_hooks.c \
-   
+    src/mlx_register/register_hooks.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -48,7 +47,7 @@ MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
 # ----------------------------------------
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
-CPPFLAGS = -I includes -I libft -I mlx -I .
+CPPFLAGS    = -I includes -I libft -I mlx -I .
 RM          = rm -f
 
 # ----------------------------------------
@@ -87,41 +86,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
-COMMON_OBJS = \
-    src/utils/free_split.o
-
-PARSER_OBJS = \
-    src/parser_cli/main.o \
-    src/init_game.o \
-    src/parse/parse.o \
-    src/parse/parse_utils.o \
-    src/parse/map_builder.o \
-    src/parse/map_validator.o \
-    src/parse/spawn_objects.o \
-    src/object/new_object.o \
-    src/object/new_living.o \
-    src/object/new_player.o \
-    src/object/new_door.o \
-    src/object/new_structure.o
-
-parser_cli: $(PARSER_OBJS) $(COMMON_OBJS) libft/libft.a
-	$(CC) $(CFLAGS) -o parser_cli $(PARSER_OBJS) $(COMMON_OBJS) libft/libft.a
-
-parser_cli_clean:
-	rm -f $(COMMON_OBJS) $(PARSER_OBJS)
-
-
-# ----------------------------------------
-# Build with main_kuwa
-# ----------------------------------------
-
-KUWA_MAIN = src/main_kuwa.c
-KUWA_OBJS = $(KUWA_MAIN:.c=.o) $(filter-out src/main.o, $(OBJS))
-
-kuwa: $(LIBFT_LIB) $(MLX_LIB) $(KUWA_OBJS)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(KUWA_OBJS) $(LIBFT_LIB) $(MLX_FLAGS) -o cub3D_kuwa
-
-kuwa_clean:
-	rm -f $(KUWA_OBJS)
-
