@@ -1,6 +1,14 @@
 NAME = cub3D
 
 # ----------------------------------------
+# Compiler
+# ----------------------------------------
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror
+CPPFLAGS    = -I includes -I libft -I mlx -I .
+RM          = rm -f
+
+# ----------------------------------------
 # Sources
 # ----------------------------------------
 SRCS = \
@@ -41,14 +49,6 @@ LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 MLX_DIR     = mlx
 MLX_LIB     = $(MLX_DIR)/libmlx.a
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-
-# ----------------------------------------
-# Compiler
-# ----------------------------------------
-CC          = cc
-CFLAGS      = -Wall -Wextra -Werror
-CPPFLAGS    = -I includes -I libft -I mlx -I .
-RM          = rm -f
 
 # ----------------------------------------
 # Build
