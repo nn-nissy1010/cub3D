@@ -1,15 +1,15 @@
-WE ./textures/east.xpm
-EA ./textures/west.xpm
+WE ./textures/west.xpm
+EA ./textures/east.xpm
 NO ./textures/north.xpm
 SO ./textures/south.xpm
-F 220,100,0
-C 225,30,0
+F 0,0,0
+C 0,0,0
 
 
 1111111
 1101001
 100000111111
-10E000000001
+10S000000001
 100000000001
 111110000001
 111111101111

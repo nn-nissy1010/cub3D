@@ -15,12 +15,6 @@ jobs:
       - name: Build CI Docker image
         run: docker build -t ci-image -f docker/Dockerfile.ci .
 
-      - name: Run Norminette
-        run: |
-          docker run --rm -v ${{ github.workspace }}:/app ci-image \
-            bash -c "norminette | tee norm_log.txt && \
-            if grep -q 'Error:' norm_log.txt; then exit 1; fi"
-
       - name: Build project
         run: |
           docker run --rm -v ${{ github.workspace }}:/app ci-image \

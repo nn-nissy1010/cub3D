@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:37:35 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 19:43:29 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 20:37:59 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,19 @@ int	validate_map(t_map *m)
 	int	x;
 	int	y;
 
-	x = 0;
-	while (x < m->width)
-	{
-		if (!is_wall(m->grid[0][x]) || !is_wall(m->grid[m->height - 1][x]))
-		{
-			perror("Error\nmap not closed");
-			return (1);
-		}
-		x++;
-	}
 	y = 0;
 	while (y < m->height)
 	{
-		if (!is_wall(m->grid[y][0]) || !is_wall(m->grid[y][m->width - 1]))
+		x = 0;
+		while (x < m->width)
 		{
-			perror("Error\nmap not closed");
-			return (1);
+			if (m->grid[y][x] && !ft_strchr("01NSEW ", m->grid[y][x]))
+				return (1);
+			if ((y == 0 || y == m->height - 1) && !is_wall(m->grid[y][x]))
+				return (1);
+			if ((x == 0 || x == m->width - 1) && !is_wall(m->grid[y][x]))
+				return (1);
+			x++;
 		}
 		y++;
 	}

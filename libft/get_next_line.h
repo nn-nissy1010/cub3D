@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 21:56:26 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/11/25 21:32:04 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:36:09 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
+#  define BUFFER_SIZE 5120
 # endif
 
 # ifndef MAX_BUFFER_SIZE

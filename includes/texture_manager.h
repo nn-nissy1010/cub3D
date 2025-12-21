@@ -6,30 +6,30 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:05:26 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 19:19:30 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:37:36 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEXTURE_MANAGER_H
 # define TEXTURE_MANAGER_H
 
-#define TEX_WIDTH 64
-#define TEX_HEIGHT 64
-#define MOVE_SPEED 0.08
-#define ROT_SPEED 0.05
+# define TEX_WIDTH 64
+# define TEX_HEIGHT 64
+# define MOVE_SPEED 0.08
+# define ROT_SPEED 0.05
 
-#define WIDTH 800
-#define HEIGHT 600
+# define WIDTH 800
+# define HEIGHT 600
 
-#define K_ESC 65307
-#define K_W 119
-#define K_S 115
-#define K_A 97
-#define K_D 100
-#define K_UP 65362
-#define K_DOWN 65364
-#define K_LEFT 65361
-#define K_RIGHT 65363
+# define K_ESC 65307
+# define K_W 119
+# define K_S 115
+# define K_A 97
+# define K_D 100
+# define K_UP 65362
+# define K_DOWN 65364
+# define K_LEFT 65361
+# define K_RIGHT 65363
 
 typedef struct s_sys
 {
@@ -88,8 +88,8 @@ typedef struct s_raydata
 {
 	double		perp_dist;
 	int			side;
-	int 		step_x;
-	int 		step_y;
+	int			step_x;
+	int			step_y;
 	int			map_x;
 	int			map_y;
 	double		wall_x;
@@ -123,6 +123,13 @@ typedef struct s_texture
 	int			width;
 	int			height;
 }				t_texture;
+
+typedef struct s_wallparams
+{
+	double		step;
+	double		tex_pos;
+	int			y;
+}				t_wallparams;
 
 typedef struct s_img
 {
@@ -160,17 +167,10 @@ typedef struct s_game
 	t_texmgr	texmgr;
 	t_camera	camera;
 
-	t_object	*objects[1024];
+	t_object	*objects[5120];
 	int			obj_count;
 
 }				t_game;
-
-typedef struct s_wallparams
-{
-	double		step;
-	double		tex_pos;
-	int			y;
-}				t_wallparams;
 
 int				texmgr_init(t_game *g);
 void			texmgr_destroy(t_texmgr *tm, void *mlx);

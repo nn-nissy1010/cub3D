@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:38:02 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 14:28:18 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:36:16 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	add_object(t_game *g, t_object *obj)
 {
-	if (g->obj_count >= 1024)
+	if (g->obj_count >= 5120)
 		return ;
 	g->objects[g->obj_count++] = obj;
 }

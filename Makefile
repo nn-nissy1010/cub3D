@@ -6,7 +6,7 @@
 #    By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 15:23:46 by nnishiya          #+#    #+#              #
-#    Updated: 2025/12/21 20:12:42 by nnishiya         ###   ########.fr        #
+#    Updated: 2025/12/21 20:41:35 by nnishiya         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS = \
     src/texmgr/texmgr_destroy.c \
     src/render/draw_world.c \
     src/render/draw_wall.c \
+	src/render/draw_utils.c \
     src/camera/camera_main.c \
     src/camera/ray_single.c \
     src/camera/ray_result.c \

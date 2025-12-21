@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_structure.c                                    :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/25 19:48:14 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 21:07:16 by nnishiya         ###   ########.fr       */
+/*   Created: 2025/12/21 20:40:56 by nnishiya          #+#    #+#             */
+/*   Updated: 2025/12/21 20:41:17 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_structure	*new_structure(double x, double y, int is_wall)
+int	color_to_init(t_color c)
 {
-	t_structure	*s;
-	t_object	*obj;
-
-	s = malloc(sizeof(t_structure));
-	if (!s)
-		return (NULL);
-	if (is_wall)
-		obj = new_object(x, y, OBJ_WALL, NULL);
-	else
-		obj = new_object(x, y, OBJ_STRUCTURE, NULL);
-	if (!obj)
-		return (free(s), NULL);
-	s->base = *obj;
-	free(obj);
-	s->is_wall = is_wall;
-	return (s);
+	return ((c.r << 16) | (c.g << 8) | (c.b));
 }

@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:19:05 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 19:50:05 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:37:34 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	free_split(char **sp);
 // ------- textures / colors --------
 int		set_texture(t_tex *tex, char *id, char *path);
 int		set_color(t_colors *c, char *id, char *value);
+int		color_to_init(t_color c);
 
 // ------- map builder --------
 int		push_map_line(t_map *m, char *line);

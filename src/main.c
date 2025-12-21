@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:14:11 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/12/21 19:47:46 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 20:39:39 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,28 +64,22 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_error(&g, "Usage: ./cub3D map.cub\n");
-		// return (printf("Usage: ./cub3D map.cub\n"), 1);
 	ft_bzero(&g, sizeof(t_game));
 	g.obj_count = 0;
 	init_game(&g);
 	if (parse_cub(&g, argv[1]) != 0)
 		exit_error(&g, "parse failed\n");
-		// return (printf("parse failed\n"), 1);
 	player = find_player_living(&g);
 	if (!player)
 		exit_error(&g, "no player found in map\n");
-		// return (printf("no player found in map\n"), 1);
 	g.sys.mlx = mlx_init();
 	if (!g.sys.mlx)
 		exit_error(&g, "mlx_init failed\n");
-		// return (printf("mlx_init failed\n"), 1);
 	g.sys.win = mlx_new_window(g.sys.mlx, WIDTH, HEIGHT, "cub3D");
 	if (!g.sys.win)
 		exit_error(&g, "mlx_new_window failed\n");
-		// return (printf("mlx_new_window failed\n"), 1);
 	if (texmgr_init(&g) != 0)
 		exit_error(&g, "texmgr_init failed\n");
-		// return (printf("texmgr_init failed\n"), 1);
 	init_camera(&g.camera, player, &g.map);
 	register_mlx_hooks(&g);
 	mlx_loop(g.sys.mlx);

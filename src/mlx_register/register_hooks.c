@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 19:33:43 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/12/21 15:25:27 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 21:36:13 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,20 @@ void	free_map_and_tex(t_game *g)
 void	free_objects(t_game *g)
 {
 	int	i;
+	int	limit;
 
+	if (g->obj_count > 5120)
+		limit = 5120;
+	else
+		limit = g->obj_count;
 	i = 0;
-	while (i < g->obj_count)
+	while (i < limit)
 	{
-		free(g->objects[i]);
+		if (g->objects[i] != NULL)
+		{
+			free(g->objects[i]);
+			g->objects[i] = NULL;
+		}
 		i++;
 	}
 }
