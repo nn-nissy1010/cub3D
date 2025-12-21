@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 23:01:05 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/11/30 23:04:54 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/12/21 19:38:57 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,9 @@ void	draw_walls(t_game *g, t_img *screen)
 		draw_wall_column(g, screen, x);
 		x++;
 	}
+}
+
+int	color_to_init(t_color c)
+{
+	return ((c.r << 16) | (c.g << 8) | (c.b));
 }

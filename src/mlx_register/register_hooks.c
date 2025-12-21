@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   register_hooks.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 19:33:43 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/12/21 15:16:12 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 19:42:41 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ void	free_map_and_tex(t_game *g)
 {
 	int	i;
 
-	// テクスチャパス (Record 1-4)
 	free(g->tex.no);
 	free(g->tex.so);
 	free(g->tex.we);
 	free(g->tex.ea);
-	// マップの行 (Record 5, 8, 9)
 	if (g->map.grid)
 	{
 		i = 0;

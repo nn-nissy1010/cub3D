@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:10:43 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 14:21:39 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 19:42:06 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,60 +49,50 @@ int	get_tex_color(t_texture *tex, int tex_x, int tex_y)
 	return (*(unsigned int *)dst);
 }
 
-/* 画面の1行（screen_y）に対して、
-   テクスチャ tex の tex_row 行を左から右へ貼り付ける */
-static void	draw_fc_line(t_img *screen, t_texture *tex, int screen_y,
-		int tex_row)
+/* 画面の高さ(HEIGHT)を使って、
+   上半分を天井テクスチャ、下半分を床テクスチャとして切り替え、
+   画面を上から1行ずつ描画していく。 */
+static void	put_floor_ceiling_color(t_img *screen, int tex_color, int screen_y)
 {
 	int	x;
-	int	tex_x;
-	int	tex_y;
-	int	color;
 
 	x = 0;
 	while (x < WIDTH)
 	{
-		tex_x = x % tex->width;
-		tex_y = tex_row % tex->height;
-		color = get_tex_color(tex, tex_x, tex_y);
-		put_pixel(screen, x, screen_y, color);
+		put_pixel(screen, x, screen_y, tex_color);
 		x++;
 	}
 }
 
-/* 画面の高さ(HEIGHT)を使って、
-   上半分を天井テクスチャ、下半分を床テクスチャとして切り替え、
-   画面を上から1行ずつ描画していく。 */
 static void	draw_floor_and_ceiling(t_game *g, t_img *screen)
 {
-	int			y;
-	t_texture	*ceil_tex;
-	t_texture	*floor_tex;
-	t_texture	*tex;
-	int			tex_row;
+	int		y;
+	int		tex_row;
+	t_color	floor_color;
+	t_color	ceiling_color;
+	int		tex_color;
 
-	ceil_tex = &g->texmgr.ceiling;
-	floor_tex = &g->texmgr.floor;
+	floor_color = g->colors.floor;
+	ceiling_color = g->colors.ceiling;
 	y = 0;
 	while (y < HEIGHT)
 	{
 		if (y < HEIGHT / 2)
 		{
-			tex = ceil_tex;
+			tex_color = color_to_init(ceiling_color);
 			tex_row = y;
+			put_floor_ceiling_color(screen, tex_color, y);
 		}
 		else
 		{
-			tex = floor_tex;
+			tex_color = color_to_init(floor_color);
 			tex_row = y - HEIGHT / 2;
+			put_floor_ceiling_color(screen, tex_color, y);
 		}
-		draw_fc_line(screen, tex, y, tex_row);
 		y++;
 	}
 }
 
-// 上半分（天井）と下半分（床）を描画。
-// その後、真ん中を基準に壁を描画。その時にピクセル列ごとに処理。
 void	draw_world(t_game *g)
 {
 	t_img	*screen;

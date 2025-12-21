@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   texture.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:59:39 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 15:06:01 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 19:41:32 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEXTURES_H
-# define TEXTURES_H
+#ifndef TEXTURE_H
+# define TEXTURE_H
 
 # define TEX_WALL "textures/wall.xpm"
 # define TEX_FLOOR "textures/floor.xpm"

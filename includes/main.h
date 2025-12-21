@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:19:05 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 15:05:47 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 19:40:01 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void			free_split(char **sp);
 // ------- textures / colors --------
 int				set_texture(t_tex *tex, char *id, char *path);
 int				set_color(t_colors *c, char *id, char *value);
+int				color_to_init(t_color c);
 
 // ------- map builder --------
 int				push_map_line(t_map *m, char *line);
