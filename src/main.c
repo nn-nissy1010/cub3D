@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_kuwa.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:14:11 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/11/30 23:46:05 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:21:28 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,21 +68,3 @@ int	main(int argc, char **argv)
 	mlx_loop(g.sys.mlx);
 	return (0);
 }
-
-/*
-	-ゲーム本体プロセス
-		-引数チェック
-		-map構造体の初期化
-		-parse処理（マップ格納、マップ判定、オブジェクトの生成）
-
-		-ウィンドウの設定
-		-テクスチャの初期化(ロード)
-
-		-playerの位置を見つける
-		-カメラの初期化
-		-mlx_hookの設定（keypress）
-		-mlx_hookの設定（keyrelease）
-		-mlx_hookの設定（exitgame）
-		-mlx_loop（移動処理、3D計算、描画）
-		-mlx_loop(g.sys.mlx);
-*/

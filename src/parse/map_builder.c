@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:36:57 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/25 21:57:46 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:25:01 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,68 +14,82 @@
 
 #include "main.h"
 
-int push_map_line(t_map *m, char *line)
+int	push_map_line(t_map *m, char *line)
 {
-    char **new_grid;
-    int    i;
+	char	**new_grid;
+	int		i;
 
-    new_grid = malloc(sizeof(char *) * (m->height + 2));
-    if (!new_grid)
-        return (1);
-
-    i = 0;
-    while (i < m->height)
-    {
-        new_grid[i] = m->grid[i];
-        i++;
-    }
-    new_grid[i] = ft_strdup(line);
-    new_grid[i + 1] = NULL;
-
-    if (m->grid)
-        free(m->grid);
-    m->grid = new_grid;
-    m->height++;
-
-    return (0);
+	new_grid = malloc(sizeof(char *) * (m->height + 2));
+	if (!new_grid)
+		return (1);
+	i = 0;
+	while (i < m->height)
+	{
+		new_grid[i] = m->grid[i];
+		i++;
+	}
+	new_grid[i] = ft_strdup(line);
+	new_grid[i + 1] = NULL;
+	if (m->grid)
+		free(m->grid);
+	m->grid = new_grid;
+	m->height++;
+	return (0);
 }
 
-int build_map_grid(t_map *m)
+static int	pad_line(char **line, int width)
 {
-    int  i, j;
+	char	*new;
+	int		len;
+	int		j;
 
-    // 幅を決める（最大長）
-    m->width = 0;
-    for (i = 0; i < m->height; i++)
-    {
-        int len = ft_strlen(m->grid[i]);
-        if (len > m->width)
-            m->width = len;
-    }
+	len = ft_strlen(*line);
+	if (len >= width)
+		return (0);
+	new = malloc(sizeof(char) * (width + 1));
+	if (!new)
+		return (1);
+	j = 0;
+	while (j < len)
+	{
+		new[j] = (*line)[j];
+		j++;
+	}
+	while (j < width)
+		new[j++] = '1';
+	new[j] = '\0';
+	free(*line);
+	*line = new;
+	return (0);
+}
 
-    // 各行を width に揃える
-    for (i = 0; i < m->height; i++)
-    {
-        int len = ft_strlen(m->grid[i]);
-        if (len < m->width)
-        {
-            char *new = malloc(m->width + 1);
-            if (!new) 
-                return (1);
+static void	set_max_width(t_map *m)
+{
+	int	i;
+	int	len;
 
-            // 元行コピー
-            for (j = 0; j < len; j++)
-                new[j] = m->grid[i][j];
+	i = 0;
+	m->width = 0;
+	while (i < m->height)
+	{
+		len = ft_strlen(m->grid[i]);
+		if (len > m->width)
+			m->width = len;
+		i++;
+	}
+}
 
-            // 足りない部分は「壁」で埋める
-            for (j = len; j < m->width; j++)
-                new[j] = '1';   // ←←← ここが重要 !!!
+int	build_map_grid(t_map *m)
+{
+	int	i;
 
-            new[m->width] = '\0';
-
-            free(m->grid[i]);
-            m->grid[i] = new;
-        }
-    }
-    return (0);
+	set_max_width(m);
+	i = 0;
+	while (i < m->height)
+	{
+		if (pad_line(&m->grid[i], m->width))
+			return (1);
+		i++;
+	}
+	return (0);
 }

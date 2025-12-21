@@ -17,6 +17,8 @@ SRCS = \
     src/utils/free_split.c \
     src/parse/parse.c \
     src/parse/parse_utils.c \
+    src/parse/parse_utils2.c \
+    src/parse/parse_utils3.c \
     src/parse/map_builder.c \
     src/parse/map_validator.c \
     src/parse/spawn_objects.c \
@@ -48,7 +50,7 @@ LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 # ----------------------------------------
 MLX_DIR     = mlx
 MLX_LIB     = $(MLX_DIR)/libmlx.a
-MLX_FLAGS   = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
 # ----------------------------------------
 # Build

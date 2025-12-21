@@ -6,7 +6,7 @@
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:37:35 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/25 20:30:46 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:25:39 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,35 @@
 
 #include "main.h"
 
-static int is_wall(char c)
+static int	is_wall(char c)
 {
-    return (c == '1');
+	return (c == '1');
 }
 
-int validate_map(t_map *m)
+int	validate_map(t_map *m)
 {
-    int y, x;
+	int	x;
+	int	y;
 
-    // 上下が全部壁か確認
-    for (x = 0; x < m->width; x++)
-    {
-        if (!is_wall(m->grid[0][x]) || !is_wall(m->grid[m->height - 1][x]))
-            return (perror("map not closed"), 1);
-    }
-    // 左右壁チェック
-    for (y = 0; y < m->height; y++)
-    {
-        if (!is_wall(m->grid[y][0]) || !is_wall(m->grid[y][m->width - 1]))
-            return (perror("map not closed"), 1);
-    }
-    return (0);
+	x = 0;
+	while (x < m->width)
+	{
+		if (!is_wall(m->grid[0][x]) || !is_wall(m->grid[m->height - 1][x]))
+		{
+			perror("Error\nmap not closed");
+			return (1);
+		}
+		x++;
+	}
+	y = 0;
+	while (y < m->height)
+	{
+		if (!is_wall(m->grid[y][0]) || !is_wall(m->grid[y][m->width - 1]))
+		{
+			perror("Error\nmap not closed");
+			return (1);
+		}
+		y++;
+	}
+	return (0);
 }

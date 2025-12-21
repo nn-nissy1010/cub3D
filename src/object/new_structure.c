@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_structure.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:48:14 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/30 19:51:56 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/12/21 14:53:31 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ t_structure	*new_structure(double x, double y, int is_wall)
 		obj = new_object(x, y, OBJ_WALL, TEX_WALL);
 	else
 		obj = new_object(x, y, OBJ_STRUCTURE, NULL);
+	if (!obj)
+		return (free(s), NULL);
 	s->base = *obj;
+	free(obj);
 	s->is_wall = is_wall;
 	return (s);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:19:05 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/30 23:54:05 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/12/21 15:05:47 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "objects.h"
 #include "texture.h"
 #include "texture_manager.h"
+#include <X11/X.h>
 #include <fcntl.h>
 #include <math.h>
 #include <stdio.h>
@@ -28,6 +29,16 @@
 
 #define WIDTH 800
 #define HEIGHT 600
+
+#define K_ESC 65307
+#define K_W 119
+#define K_S 115
+#define K_A 97
+#define K_D 100
+#define K_UP 65362
+#define K_DOWN 65364
+#define K_LEFT 65361
+#define K_RIGHT 65363
 
 typedef struct s_sys
 {
@@ -82,20 +93,17 @@ typedef struct s_raycalc
 	int			hit;
 }				t_raycalc;
 
-/*
-** 1本のレイが持つ情報
-*/
 typedef struct s_raydata
 {
-	double perp_dist; // 壁までの「補正済み」距離 (fish-eye 補正後)
-	int side;         // 0: X 方向の壁, 1: Y 方向の壁
-	int map_x;        // ヒットしたマップ格子 X
-	int map_y;        // ヒットしたマップ格子 Y
-	double wall_x;    // 壁のどこに当たったか [0.0, 1.0) (テクスチャ用)
-	int line_height;  // 画面上での壁の高さ（ピクセル数）
-	int draw_start;   // 壁の描画開始Y
-	int draw_end;     // 壁の描画終了Y
-	int tex_x;        // テクスチャのX座標
+	double		perp_dist;
+	int			side;
+	int			map_x;
+	int			map_y;
+	double		wall_x;
+	int			line_height;
+	int			draw_start;
+	int			draw_end;
+	int			tex_x;
 }				t_raydata;
 
 /*　カメラ（プレイヤー視点）の情報　*/
@@ -105,8 +113,7 @@ typedef struct s_camera
 	t_direction	dir;
 	t_map		*map;
 
-	// レイキャスト結果
-	t_raydata rays[WIDTH]; // 各カラムのレイ情報
+	t_raydata	rays[WIDTH];
 }				t_camera;
 
 typedef struct s_input
@@ -137,6 +144,10 @@ typedef struct s_game
 int				parse_cub(t_game *g, const char *path);
 void			init_game(t_game *g);
 void			init_map(t_map *m);
+void			chop_newline(char *s);
+int				handle_line(t_game *g, char *line);
+int				handle_tex_or_color(t_game *g, char **sp);
+int				add_map_line(t_game *g, char *line);
 
 // ------- utility functions --------
 int				is_empty(char *line);

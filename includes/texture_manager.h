@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_manager.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:05:26 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/11/30 23:49:42 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/12/21 15:05:59 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
