@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 16:50:44 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/08/07 19:44:10 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/11/25 21:37:48 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft.h"
 
-size_t	ft_strlen(const char *str)
+size_t	gnl_ft_strlen(const char *str)
 {
-	size_t	i;
+	size_t	i = 0;
 
-	i = 0;
 	if (!str)
 		return (0);
 	while (str[i])
@@ -25,20 +23,19 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*gel_ft_strdup(const char *str)
+char	*gnl_ft_strdup(const char *str)
 {
-	size_t	i;
-	char	*dest;
+	size_t	i = 0;
 	size_t	len;
+	char	*dest;
 
 	if (!str)
 		return (NULL);
-	i = 0;
-	len = ft_strlen(str);
+	len = gnl_ft_strlen(str);
 	dest = malloc(len + 1);
 	if (!dest)
 		return (NULL);
-	while (str[i] != '\0')
+	while (i < len)
 	{
 		dest[i] = str[i];
 		i++;
@@ -47,26 +44,27 @@ char	*gel_ft_strdup(const char *str)
 	return (dest);
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	*gnl_ft_substr(const char *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	char	*substr;
+	size_t	i = 0;
 	size_t	s_len;
 	size_t	sub_size;
+	char	*substr;
 
 	if (!s)
 		return (NULL);
-	s_len = ft_strlen(s);
+	s_len = gnl_ft_strlen(s);
 	if (start >= s_len)
-		return (ft_strdup(""));
-	if ((s_len - start) > len)
+		return (gnl_ft_strdup(""));   // ← 修正
+	if (s_len - start > len)
 		sub_size = len;
 	else
 		sub_size = s_len - start;
-	substr = malloc(sizeof(char) * (sub_size + 1));
+
+	substr = malloc(sub_size + 1);
 	if (!substr)
 		return (NULL);
-	i = 0;
+
 	while (i < sub_size)
 	{
 		substr[i] = s[start + i];
@@ -76,39 +74,49 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	return (substr);
 }
 
-char	*gnl_ft_strjoin(const char *str1, const char *str2)
+char	*gnl_ft_strjoin(const char *s1, const char *s2)
 {
-	size_t	all_len;
-	size_t	i;
-	size_t	j;
+	size_t	len1, len2, i = 0, j = 0;
 	char	*dest;
 
-	if (!str1 && !str2)
+	if (!s1 && !s2)
 		return (NULL);
-	if (!str1)
-		return (ft_strdup(str2));
-	if (!str2)
-		return (ft_strdup(str1));
-	all_len = ft_strlen(str1) + ft_strlen(str2);
-	dest = malloc(sizeof(char) * (all_len + 1));
+	if (!s1)
+		return (gnl_ft_strdup(s2));
+	if (!s2)
+		return (gnl_ft_strdup(s1));
+
+	len1 = gnl_ft_strlen(s1);
+	len2 = gnl_ft_strlen(s2);
+
+	dest = malloc(len1 + len2 + 1);
 	if (!dest)
 		return (NULL);
-	i = -1;
-	while (str1[++i] != '\0')
-		dest[i] = str1[i];
-	j = -1;
-	while (str2[++j] != '\0')
-		dest[i + j] = str2[j];
-	dest[all_len] = '\0';
+
+	while (i < len1)
+	{
+		dest[i] = s1[i];
+		i++;
+	}
+	while (j < len2)
+	{
+		dest[i + j] = s2[j];
+		j++;
+	}
+	dest[i + j] = '\0';
+
 	return (dest);
 }
 
-char	*gel_ft_strchr(const char *s, int c)
+char	*gnl_ft_strchr(const char *s, int c)
 {
 	char	*str;
 
+	if (!s)       // ← これだけでNULLの安全性が付く
+		return (NULL);
+
 	str = (char *)s;
-	while (*str != '\0')
+	while (*str)
 	{
 		if (*str == (char)c)
 			return (str);

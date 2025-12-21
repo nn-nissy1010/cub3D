@@ -1,19 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   new_structure.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/24 11:14:11 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/11/24 11:18:40 by nnishiya         ###   ########.fr       */
+/*   Created: 2025/11/25 19:48:14 by nnishiya          #+#    #+#             */
+/*   Updated: 2025/12/21 21:07:16 by nnishiya         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "main.h"
 
-int	main(void)
+t_structure	*new_structure(double x, double y, int is_wall)
 {
-	printf("%s\n", "hello world CI");
-	return (0);
+	t_structure	*s;
+	t_object	*obj;
+
+	s = malloc(sizeof(t_structure));
+	if (!s)
+		return (NULL);
+	if (is_wall)
+		obj = new_object(x, y, OBJ_WALL, NULL);
+	else
+		obj = new_object(x, y, OBJ_STRUCTURE, NULL);
+	if (!obj)
+		return (free(s), NULL);
+	s->base = *obj;
+	free(obj);
+	s->is_wall = is_wall;
+	return (s);
 }
