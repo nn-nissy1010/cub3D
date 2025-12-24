@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   draw_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:10:43 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 20:26:07 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:45:19 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-// 距離 dist が大きいほど base_color を暗く（薄く）する
-// 色が24bit(R,G,Bが8bitずつ)なので、シフト演算してから、8bit取り出して、shadeをかけてから、RGBを再合成。
 int	apply_distance_shade(int base_color, double dist)
 {
 	double	shade;
@@ -29,8 +27,6 @@ int	apply_distance_shade(int base_color, double dist)
 	b = (base_color & 0xFF) * shade;
 	return ((r << 16) | (g << 8) | b);
 }
-// 指定したテクスチャの (tex_x, tex_y) の色を取得する
-// テクスチャの幅(x)と高さ(y)から、ピクセルの上半分と下半分で分けて実施。
 
 int	get_tex_color(t_texture *tex, int tex_x, int tex_y)
 {
@@ -49,9 +45,6 @@ int	get_tex_color(t_texture *tex, int tex_x, int tex_y)
 	return (*(unsigned int *)dst);
 }
 
-/* 画面の高さ(HEIGHT)を使って、
-   上半分を天井テクスチャ、下半分を床テクスチャとして切り替え、
-   画面を上から1行ずつ描画していく。 */
 static void	put_floor_ceiling_color(t_img *screen, int tex_color, int screen_y)
 {
 	int	x;
@@ -93,8 +86,6 @@ static void	draw_floor_and_ceiling(t_game *g, t_img *screen)
 	}
 }
 
-// 上半分（天井）と下半分（床）を描画。
-// その後、真ん中を基準に壁を描画。その時にピクセル列ごとに処理。
 void	draw_world(t_game *g)
 {
 	t_img	*screen;

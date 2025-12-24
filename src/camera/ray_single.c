@@ -6,13 +6,12 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 16:45:17 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/11/30 23:40:45 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:43:03 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-/*DDA 用のステップと最初の side_dist を計算*/
 static void	init_dda_step(t_raycalc *rc)
 {
 	if (rc->ray_dir_x < 0)
@@ -56,7 +55,7 @@ static void	init_ray_base(t_camera *cam, int x, t_raycalc *rc)
 		rc->delta_dist_y = fabs(1.0 / rc->ray_dir_y);
 }
 
-/* x 列目のレイを飛ばして、cam->rays[x] を埋める*/
+/* x_col cam->rays[x] */
 static void	cast_single_ray(t_camera *cam, int x)
 {
 	t_raydata	*ray;
@@ -69,7 +68,7 @@ static void	cast_single_ray(t_camera *cam, int x)
 	fill_ray_result(ray, &rc);
 }
 
-/*1フレーム分の全レイを計算*/
+/*1frame_ray*/
 void	camera_cast_all_rays(t_camera *cam)
 {
 	int	x;

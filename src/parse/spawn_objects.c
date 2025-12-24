@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   spawn_objects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:38:02 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 21:36:16 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:44:39 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// src/parse/spawn_objects.c
 
 #include "main.h"
 

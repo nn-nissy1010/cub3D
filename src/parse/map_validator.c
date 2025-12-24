@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   map_validator.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:37:35 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 20:37:59 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:48:21 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// src/parse/map_validator.c
 
 #include "main.h"
 

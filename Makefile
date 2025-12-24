@@ -3,26 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 15:23:46 by nnishiya          #+#    #+#              #
-#    Updated: 2025/12/21 20:41:35 by nnishiya         ###   ########.fr        #
+#    Updated: 2025/12/24 12:49:44 by tkuwahat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
 
-# ----------------------------------------
-# Compiler
-# ----------------------------------------
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
 CPPFLAGS    = -I includes -I libft -I mlx -I .
 RM          = rm -f
 
-# ----------------------------------------
-# Sources
-# ----------------------------------------
 SRCS = \
     src/main.c \
     src/init_game.c  \
@@ -52,22 +46,13 @@ SRCS = \
 
 OBJS = $(SRCS:.c=.o)
 
-# ----------------------------------------
-# libft
-# ----------------------------------------
 LIBFT_DIR   = libft
 LIBFT_LIB   = $(LIBFT_DIR)/libft.a
 
-# ----------------------------------------
-# MiniLibX (Mac)
-# ----------------------------------------
 MLX_DIR     = mlx
 MLX_LIB     = $(MLX_DIR)/libmlx.a
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz
 
-# ----------------------------------------
-# Build
-# ----------------------------------------
 all: $(NAME)
 
 # libft build
@@ -86,9 +71,6 @@ $(NAME): $(LIBFT_LIB) $(MLX_LIB) $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-# ----------------------------------------
-# Clean
-# ----------------------------------------
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(MLX_DIR) clean

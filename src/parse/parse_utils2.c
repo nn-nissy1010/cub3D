@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 14:30:53 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 14:31:16 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:44:00 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static int	ft_isspace(char c)
 		|| c == '\r');
 }
 
-// 空行 or 空白だけの行か？
 int	is_empty(char *line)
 {
 	int	i;
@@ -35,14 +34,12 @@ int	is_empty(char *line)
 	return (1);
 }
 
-// テクスチャ識別子か？
 int	is_tex_id(const char *id)
 {
 	return (!ft_strcmp(id, "NO") || !ft_strcmp(id, "SO") || !ft_strcmp(id, "WE")
 		|| !ft_strcmp(id, "EA"));
 }
 
-// カラー識別子か？
 int	is_color_id(const char *id)
 {
 	return (!ft_strcmp(id, "F") || !ft_strcmp(id, "C"));
