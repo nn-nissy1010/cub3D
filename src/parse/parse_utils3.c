@@ -6,15 +6,15 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 14:33:34 by nnishiya          #+#    #+#             */
-/*   Updated: 2026/01/08 11:19:40 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:38:21 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int		handle_line(t_game *g, char *line);
-int		handle_tex_or_color(t_game *g, char **sp);
-int		add_map_line(t_game *g, char *line);
+int			handle_line(t_game *g, char *line);
+int			handle_tex_or_color(t_game *g, char **sp);
+int			add_map_line(t_game *g, char *line);
 
 void	chop_newline(char *s)
 {
@@ -23,18 +23,6 @@ void	chop_newline(char *s)
 	len = ft_strlen(s);
 	if (len > 0 && s[len - 1] == '\n')
 		s[len - 1] = '\0';
-}
-
-static int	is_space(char c)
-{
-	return (c == ' ' || c == '\t');
-}
-
-static char	*skip_spaces(char *s)
-{
-	while (*s && is_space(*s))
-		s++;
-	return (s);
 }
 
 static int	is_config_line(char *line)
@@ -101,49 +89,9 @@ int	handle_line(t_game *g, char *line)
 	if (is_config_line(line))
 	{
 		if (g->map_started)
-			return (printf("Error\nConfiguration elements must be above the map\n"), 1);
+			return (printf("Error\nConfig must come before map\n"), 1);
 		return (handle_tex_or_color_line(g, line));
 	}
 	g->map_started = 1;
 	return (add_map_line(g, line));
-}
-
-// int	handle_line(t_game *g, char *line)
-// {
-// 	char	**sp;
-
-// 	chop_newline(line);
-// 	if (is_empty(line))
-// 		return (0);
-// 	sp = ft_split(line, ' ');
-// 	if (!sp)
-// 		return (1);
-// 	if (is_tex_id(sp[0]) || is_color_id(sp[0]))
-// 	{
-// 		if (g->map_started)
-// 		{
-// 			printf("Error\nConfiguration elements must be above the map\n");
-// 			return (free_split(sp), 1);
-// 		}
-// 		if (handle_tex_or_color(g, sp))
-// 			return (free_split(sp), 1);
-// 		return (free_split(sp), 0);
-// 	}
-// 	free_split(sp);
-// 	g->map_started = 1;
-// 	return (add_map_line(g, line));
-// }
-
-int	handle_tex_or_color(t_game *g, char **sp)
-{
-	if (is_tex_id(sp[0]))
-		return (set_texture(&g->tex, sp[0], sp[1]));
-	if (is_color_id(sp[0]))
-		return (set_color(&g->colors, sp[0], sp[1]));
-	return (1);
-}
-
-int	add_map_line(t_game *g, char *line)
-{
-	return (push_map_line(&g->map, line));
 }

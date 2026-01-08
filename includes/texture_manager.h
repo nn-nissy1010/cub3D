@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:05:26 by nnishiya          #+#    #+#             */
-/*   Updated: 2026/01/08 11:33:04 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:44:57 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ typedef struct s_tex
 	int		has_ea;
 }	t_tex;
 
-
 typedef struct s_color
 {
 	int			r;
@@ -65,7 +64,6 @@ typedef struct s_colors
 	int		has_floor;
 	int		has_ceiling;
 }	t_colors;
-
 
 typedef struct s_map
 {

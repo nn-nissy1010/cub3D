@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:14:11 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/12/21 20:39:39 by nnishiya         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:28:14 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ int	exit_error(t_game *g, char *msg)
 	exit(EXIT_FAILURE);
 }
 
+static int	has_cub_extension(const char *path)
+{
+	size_t	len;
+
+	if (!path)
+		return (0);
+	len = ft_strlen(path);
+	if (len < 4)
+		return (0);
+	return (ft_strncmp(path + len - 4, ".cub", 4) == 0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_game		g;
@@ -64,6 +76,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_error(&g, "Usage: ./cub3D map.cub\n");
+	if (!has_cub_extension(argv[1]))
+		exit_error(&g, "Invalid file extension (expected .cub)\n");
 	ft_bzero(&g, sizeof(t_game));
 	g.obj_count = 0;
 	init_game(&g);
@@ -81,7 +95,5 @@ int	main(int argc, char **argv)
 	if (texmgr_init(&g) != 0)
 		exit_error(&g, "texmgr_init failed\n");
 	init_camera(&g.camera, player, &g.map);
-	register_mlx_hooks(&g);
-	mlx_loop(g.sys.mlx);
-	return (0);
+	return (register_mlx_hooks(&g), mlx_loop(g.sys.mlx), 0);
 }
