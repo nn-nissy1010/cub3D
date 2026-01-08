@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:33:10 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/24 12:44:29 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 11:28:21 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,33 @@ static int	finalize_map_setup(t_game *g)
 	return (0);
 }
 
+int	validate_config(t_game *g)
+{
+	if (!g->colors.has_floor || !g->colors.has_ceiling)
+		return (printf("Error\nMissing floor/ceiling color (F/C)\n"), 1);
+	return (0);
+}
+
 int	parse_cub(t_game *g, const char *path)
 {
 	int	fd;
 
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
-	{
-		perror("Error\ncannot open cub file");
-		return (1);
-	}
+		return (perror("Error\ncannot open cub file"), 1);
+
 	if (read_cub_lines(g, fd))
+		return (close(fd), 1);
+
+	close(fd);
+
+	/* ★ ここで必須設定チェック ★ */
+	if (!g->colors.has_floor || !g->colors.has_ceiling)
 	{
-		close(fd);
+		printf("Error\nMissing floor or ceiling color (F/C)\n");
 		return (1);
 	}
-	close(fd);
+
 	return (finalize_map_setup(g));
 }
+

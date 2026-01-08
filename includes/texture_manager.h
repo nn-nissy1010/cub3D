@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:05:26 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/24 12:38:59 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 11:25:43 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,12 @@ typedef struct s_color
 
 typedef struct s_colors
 {
-	t_color		floor;
-	t_color		ceiling;
-}				t_colors;
+	t_color	floor;
+	t_color	ceiling;
+	int		has_floor;
+	int		has_ceiling;
+}	t_colors;
+
 
 typedef struct s_map
 {

@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:36:23 by nnishiya          #+#    #+#             */
-/*   Updated: 2026/01/08 11:13:12 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 11:26:21 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,16 +83,30 @@ static int	split_rgb(char *str, int out[3])
 
 int	set_color(t_colors *c, char *id, char *value)
 {
-	int	rgb[3];
+	int		rgb[3];
+	char	*trim;
 
-	printf("%s", value);
-	if (!value || split_rgb(value, rgb))
+	if (!value)
 		return (1);
+	trim = ft_strtrim(value, " \t\n");
+	if (!trim)
+		return (1);
+	if (split_rgb(trim, rgb))
+		return (free(trim), 1);
+	free(trim);
+
 	if (id[0] == 'F')
+	{
 		c->floor = (t_color){rgb[0], rgb[1], rgb[2]};
+		c->has_floor = 1;
+	}
 	else if (id[0] == 'C')
+	{
 		c->ceiling = (t_color){rgb[0], rgb[1], rgb[2]};
+		c->has_ceiling = 1;
+	}
 	else
 		return (perror("invalid color id"), 1);
 	return (0);
 }
+
