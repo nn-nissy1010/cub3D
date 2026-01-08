@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:19:05 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 21:37:34 by nnishiya         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:47:38 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	chop_newline(char *s);
 int		handle_line(t_game *g, char *line);
 int		handle_tex_or_color(t_game *g, char **sp);
 int		add_map_line(t_game *g, char *line);
+char	*skip_spaces(char *s);
+int		is_space(char c);
+int		is_player_char(char c);
+int		set_tex_path(char **dst, int *has_flag, char *path, char *msg);
 
 // ------- utility functions --------
 int		is_empty(char *line);

@@ -6,11 +6,16 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/21 14:30:53 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/24 12:44:00 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:44:00 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+int	is_player_char(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
 
 static int	ft_isspace(char c)
 {

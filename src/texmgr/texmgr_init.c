@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:07:02 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/24 21:21:30 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 15:24:46 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static int	load_tex(void *mlx, t_texture *out, const char *path)
 	out->img = mlx_xpm_file_to_image(mlx, (char *)path, &out->width,
 			&out->height);
 	if (!out->img)
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
 int	texmgr_init(t_game *g)
@@ -46,17 +46,17 @@ int	texmgr_init(t_game *g)
 	mlx = g->sys.mlx;
 	if (load_tex(mlx, &tm->wall_north, g->tex.no))
 		return (1);
-	if(load_tex(mlx, &tm->wall_south, g->tex.so))
+	if (load_tex(mlx, &tm->wall_south, g->tex.so))
 		return (1);
-	if(load_tex(mlx, &tm->wall_west, g->tex.we))
+	if (load_tex(mlx, &tm->wall_west, g->tex.we))
 		return (1);
-	if(load_tex(mlx, &tm->wall_east, g->tex.ea))
+	if (load_tex(mlx, &tm->wall_east, g->tex.ea))
 		return (1);
-	if(load_tex(mlx, &tm->floor, TEX_FLOOR))
+	if (load_tex(mlx, &tm->floor, TEX_FLOOR))
 		return (1);
-	if(load_tex(mlx, &tm->ceiling, TEX_CEILING))
+	if (load_tex(mlx, &tm->ceiling, TEX_CEILING))
 		return (1);
-	if(load_tex(mlx, &tm->player, TEX_PLAYER))
+	if (load_tex(mlx, &tm->player, TEX_PLAYER))
 		return (1);
 	if (init_screen_img(tm, mlx))
 		return (1);
