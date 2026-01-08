@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:05:26 by nnishiya          #+#    #+#             */
-/*   Updated: 2026/01/08 11:25:43 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 11:33:04 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,17 @@ typedef struct s_sys
 
 typedef struct s_tex
 {
-	char		*no;
-	char		*so;
-	char		*we;
-	char		*ea;
-}				t_tex;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+
+	int		has_no;
+	int		has_so;
+	int		has_we;
+	int		has_ea;
+}	t_tex;
+
 
 typedef struct s_color
 {

@@ -6,28 +6,51 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:36:23 by nnishiya          #+#    #+#             */
-/*   Updated: 2026/01/08 11:26:21 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/08 11:44:02 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-int	set_texture(t_tex *tex, char *id, char *path)
+static int	set_tex_path(char **dst, int *has_flag, char *path, char *msg)
 {
-	if (!path)
-		return (perror("missing texture path"), 1);
-	if (!ft_strncmp(id, "NO", 2))
-		tex->no = ft_strdup(path);
-	else if (!ft_strncmp(id, "SO", 2))
-		tex->so = ft_strdup(path);
-	else if (!ft_strncmp(id, "WE", 2))
-		tex->we = ft_strdup(path);
-	else if (!ft_strncmp(id, "EA", 2))
-		tex->ea = ft_strdup(path);
-	else
-		return (perror("invalid texture id"), 1);
+	if (*has_flag)
+		return (perror(msg), 1);
+	*dst = ft_strdup(path);
+	if (!*dst)
+		return (1);
+	*has_flag = 1;
 	return (0);
 }
+
+int	set_texture(t_tex *tex, char *id, char *path)
+{
+	char	*trim;
+	int		ret;
+
+	if (!path)
+		return (1);
+
+	trim = ft_strtrim(path, " \t\n");
+	if (!trim || !*trim)
+		return (free(trim), 1);
+
+	ret = 0;
+	if (!ft_strncmp(id, "NO", 2))
+		ret = set_tex_path(&tex->no, &tex->has_no, trim, "duplicate NO");
+	else if (!ft_strncmp(id, "SO", 2))
+		ret = set_tex_path(&tex->so, &tex->has_so, trim, "duplicate SO");
+	else if (!ft_strncmp(id, "WE", 2))
+		ret = set_tex_path(&tex->we, &tex->has_we, trim, "duplicate WE");
+	else if (!ft_strncmp(id, "EA", 2))
+		ret = set_tex_path(&tex->ea, &tex->has_ea, trim, "duplicate EA");
+	else
+		ret = 1;
+
+	free(trim);
+	return (ret);
+}
+
 
 static int	is_valid_rgb(char *s)
 {
