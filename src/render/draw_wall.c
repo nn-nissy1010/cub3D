@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 23:01:05 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/12/21 20:41:02 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:44:52 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static void	draw_wall_column(t_game *g, t_img *screen, int x)
 	}
 }
 
-// 壁を貼り付ける
 void	draw_walls(t_game *g, t_img *screen)
 {
 	int	x;

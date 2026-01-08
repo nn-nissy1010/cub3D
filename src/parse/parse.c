@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:33:10 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 21:28:52 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:44:29 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// src/parse.c
 #include "main.h"
 
-/* ファイルから1行ずつ読み込んで処理するヘルパー関数 */
 static int	read_cub_lines(t_game *g, int fd)
 {
 	char	*line;
@@ -40,7 +38,6 @@ static int	read_cub_lines(t_game *g, int fd)
 	return (0);
 }
 
-/* 読み込み終わったデータの構築・バリデーション・配置を行うヘルパー関数 */
 static int	finalize_map_setup(t_game *g)
 {
 	if (build_map_grid(&g->map))
@@ -61,7 +58,6 @@ static int	finalize_map_setup(t_game *g)
 	return (0);
 }
 
-/* メインの解析関数 */
 int	parse_cub(t_game *g, const char *path)
 {
 	int	fd;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_result.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/30 23:34:05 by tkuwahat          #+#    #+#             */
-/*   Updated: 2025/12/21 20:26:42 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 21:10:04 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	set_wall_hit_and_tex(t_raydata *ray, t_raycalc *rc)
 		ray->wall_x = rc->pos_y + ray->perp_dist * rc->ray_dir_y;
 	else
 		ray->wall_x = rc->pos_x + ray->perp_dist * rc->ray_dir_x;
-	ray->wall_x -= floor(ray->wall_x);
+	ray->wall_x = 1 - (ray->wall_x - floor(ray->wall_x));
 	ray->tex_x = (int)(ray->wall_x * (double)TEX_WIDTH);
 	if (rc->side == 0 && rc->ray_dir_x > 0)
 		ray->tex_x = TEX_WIDTH - ray->tex_x - 1;

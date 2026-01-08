@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_manager.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 20:05:26 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 21:37:36 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:38:59 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ typedef struct s_raydata
 	int			tex_x;
 }				t_raydata;
 
-/*　カメラ（プレイヤー視点）の情報　*/
 typedef struct s_camera
 {
 	t_living	*owner;

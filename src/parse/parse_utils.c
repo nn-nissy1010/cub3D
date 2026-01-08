@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnishiya <nnishiya@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:36:23 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/21 14:31:05 by nnishiya         ###   ########.fr       */
+/*   Updated: 2025/12/24 12:48:29 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// src/parse/parse_utils.c
 
 #include "main.h"
 
