@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:19:05 by nnishiya          #+#    #+#             */
-/*   Updated: 2026/01/08 15:47:38 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/12 10:00:33 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ char	*skip_spaces(char *s);
 int		is_space(char c);
 int		is_player_char(char c);
 int		set_tex_path(char **dst, int *has_flag, char *path, char *msg);
+void	drain_fd(int fd);
 
 // ------- utility functions --------
 int		is_empty(char *line);
@@ -55,6 +56,9 @@ int		build_map_grid(t_map *m);
 int		validate_map(t_map *m);
 void	free_map_and_tex(t_game *g);
 void	free_objects(t_game *g);
+int		is_walkable(char c);
+void	fill_void(t_map *m, char **tmp, int x, int y);
+void	mark_outside_void(t_map *m, char **tmp);
 
 // ------- objects from map --------
 int		spawn_objects_from_map(t_game *g);

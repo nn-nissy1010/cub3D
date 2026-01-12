@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:36:57 by nnishiya          #+#    #+#             */
-/*   Updated: 2025/12/24 12:48:11 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/12 08:49:53 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	pad_line(char **line, int width)
 		j++;
 	}
 	while (j < width)
-		new[j++] = '1';
+		new[j++] = ' ';
 	new[j] = '\0';
 	free(*line);
 	*line = new;

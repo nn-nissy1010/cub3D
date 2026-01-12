@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/25 19:33:10 by nnishiya          #+#    #+#             */
-/*   Updated: 2026/01/08 15:39:44 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/12 09:59:50 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,21 @@
 static int	read_cub_lines(t_game *g, int fd)
 {
 	char	*line;
+	int		err;
 
 	g->map_started = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
-		if (!line)
+		if (line == NULL)
 			break ;
-		if (handle_line(g, line))
-			return (free(line), 1);
+		err = handle_line(g, line);
+		free(line);
+		if (err)
+		{
+			drain_fd(fd);
+			return (1);
+		}
 	}
 	if (!g->map_started)
 		return (printf("Error\nNo map found in .cub file\n"), 1);

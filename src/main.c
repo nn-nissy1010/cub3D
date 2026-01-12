@@ -6,7 +6,7 @@
 /*   By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/24 11:14:11 by tkuwahat          #+#    #+#             */
-/*   Updated: 2026/01/08 15:28:14 by tkuwahat         ###   ########.fr       */
+/*   Updated: 2026/01/12 09:43:49 by tkuwahat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ int	main(int argc, char **argv)
 	t_game		g;
 	t_living	*player;
 
+	ft_bzero(&g, sizeof(t_game));
 	if (argc != 2)
 		exit_error(&g, "Usage: ./cub3D map.cub\n");
 	if (!has_cub_extension(argv[1]))
 		exit_error(&g, "Invalid file extension (expected .cub)\n");
-	ft_bzero(&g, sizeof(t_game));
 	g.obj_count = 0;
 	init_game(&g);
 	if (parse_cub(&g, argv[1]) != 0)

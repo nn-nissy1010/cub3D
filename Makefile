@@ -6,7 +6,7 @@
 #    By: tkuwahat <tkuwahat@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/21 15:23:46 by nnishiya          #+#    #+#              #
-#    Updated: 2026/01/08 15:48:50 by tkuwahat         ###   ########.fr        #
+#    Updated: 2026/01/12 10:00:47 by tkuwahat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,10 @@ SRCS = \
     src/parse/parse_utils2.c \
     src/parse/parse_utils3.c \
     src/parse/parse_utils4.c \
+    src/parse/parse_utils5.c \
     src/parse/map_builder.c \
     src/parse/map_validator.c \
+    src/parse/map_validator_utils.c \
     src/parse/spawn_objects.c \
     src/object/new_object.c \
     src/object/new_living.c \
